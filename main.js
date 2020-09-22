@@ -3,7 +3,24 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+const heartState = {
+  '♡' : '♥',
+  '♥' : '♡'
+}
 
+const colorState = {
+  'red' : ' ',
+  ' ' : 'red'
+}
+
+let hearts = document.querySelectorAll('.like')
+
+function likeCall(e){
+  let heart = e.target;
+  mimicServerCall('url')
+  
+
+}
 
 
 
