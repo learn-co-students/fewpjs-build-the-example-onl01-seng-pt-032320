@@ -26,6 +26,7 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const heartShapes = document.querySelectorAll(".like-glyph")
+  const modal = document.querySelector("div#modal")
   heartShapes.forEach(element => {
     element. addEventListener('click', function(){
       mimicServerCall()
@@ -38,10 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
         })
       })
       .catch(function(message) {
-        alert("Bad things! Ragnarők!");
-        console.log(error.message);
+        modal.className = ""
+        const newP = document.createElement("p")
+        newP.innerText = message
+        modal.appendChild(newP)
+        document.addEventListener(setTimeout(myFunction, 5000))
+          function myFunction() {
+            modal.className = "hidden"
+            modal.style.display = none;
+          }
+        })
       });
   })
  
   })
-})
+
