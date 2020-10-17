@@ -3,7 +3,39 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+const heartState = {
+  '♡' : '♥',
+  '♥' : '♡'
+}
 
+const colorState = {
+  'red' : '',
+  '' : 'red'
+}
+
+let hearts = document.querySelectorAll('.like')
+
+function likeCall(e){
+
+  //targets the heart for an event when activated
+  let heart = e.target;
+  mimicServerCall('url')
+  .then(function(serverMessage){
+    //this fills in the heart
+    heart.innerText = heartState[heart.innerText];
+    //this fills in the heart red
+    heart.style.color = colorState[heart.style.color];
+  })
+  .catch(function(error){
+    //this removes the ".hidden" class and makes the modal window appear
+    document.getElementById("modal").className = ""
+  })
+
+}
+
+for (let heart of hearts){
+  heart.addEventListener('click', likeCall);
+}
 
 
 
