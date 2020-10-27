@@ -2,10 +2,42 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
 
+let glyphStates = {
+  "♡": "♥",
+  "♥": "♡"
+};
 
+// Heart is &#x2661
 
+let colorStates = {
+  "red" : "",
+  "": "red"
+};
+
+let articleHearts = document.querySelectorAll(".like");
+
+function likeCallback(e) {
+  let heart = e.target; // e.target is one of &#x2661,hearts, in this case
+  mimicServerCall("bogusUrl")
+   //OR: mimicServerCall("bogusUrl", {forceFailure: true})
+    .then(function(serverMessage){ // if it works, no error
+       heart.innerText = glyphStates[heart.innerText];
+       heart.style.color = colorStates[heart.style.color];
+    })
+    .catch(function(error) { // if there's an error
+      // Basic
+      // alert("Something went wrong!");
+      // or....
+      document.getElementById("modal").className = ""; //showing that element in the html/css
+    });
+}
+
+for (let bbbb of articleHearts) {
+  bbbb.addEventListener("click", likeCallback);
+}
+
+// bbbb is a variable, reps. current element in the list as you go through the list
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
